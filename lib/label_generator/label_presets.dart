@@ -29,7 +29,7 @@ class LabelPresets {
           return pw.Transform.scale(
             scale: getScaleByCustomPageFormat(pageFormat),
             child: pw.Center(
-              child: pw.Column(children: [
+              child: pw.Column(crossAxisAlignment: pw.CrossAxisAlignment.center, children: [
                 pw.Container(
                   width: 50,
                   child: pw.Image(pw.MemoryImage(qrBytes)),

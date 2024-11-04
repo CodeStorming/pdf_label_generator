@@ -19,7 +19,7 @@ class LabelPresets {
 
   static Future<pw.Document> getSimpleLabel({required PdfPageFormat pageFormat, required String qrCodeText, required String bottomText}) async {
     var qrBytes = await ScreenshotController().captureFromWidget(Container(height: 50, width: 50, child: QrImageView(data: qrCodeText)),
-        delay: Duration(milliseconds: 20), pixelRatio: 1.5);
+        delay: const Duration(milliseconds: 20), pixelRatio: 1.5);
     final pdf = pw.Document();
 
     pdf.addPage(

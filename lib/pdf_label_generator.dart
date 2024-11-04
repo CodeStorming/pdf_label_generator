@@ -6,21 +6,25 @@ import 'package:pdf_label_generator/label_generator/label_presets.dart';
 
 import 'label_generator/label_generator.dart';
 
-Future<void> generate({required PdfGeneratorType type}) async {
-  const pageFormat = PdfPageFormat(86 * PdfPageFormat.mm, 39 * PdfPageFormat.mm);
+class PdfLabelGenerator{
 
-  final LabelGenerator labelGenerator = LabelGenerator();
-  labelGenerator.setPageFormat(pageFormat);
+  static PdfPageFormat pageFormat = const PdfPageFormat(86 * PdfPageFormat.mm, 39 * PdfPageFormat.mm);
 
-  late pw.Document pdf;
+  static Future<void> printLabel({required PdfGeneratorType type}) async {
 
-  if(type.pdf == null) {
-    pdf = await LabelPresets.getSimpleLabel(pageFormat: pageFormat, qrCodeText: type.qrCodeText!, bottomText: type.bottomText!);
-  } else {
-    pdf = type.pdf!;
+    final LabelGenerator labelGenerator = LabelGenerator();
+    labelGenerator.setPageFormat(pageFormat);
+
+    late pw.Document pdf;
+
+    if(type.pdf == null) {
+      pdf = await LabelPresets.getSimpleLabel(pageFormat: pageFormat, qrCodeText: type.qrCodeText!, bottomText: type.bottomText!);
+    } else {
+      pdf = type.pdf!;
+    }
+
+    labelGenerator.generateLabelPdf(pdf: pdf);
   }
-
-  labelGenerator.generateLabelPdf(pdf: pdf);
 }
 
 class PdfGeneratorType {

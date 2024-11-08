@@ -6,6 +6,11 @@ import 'package:pdf_label_generator/label_generator/label_presets.dart';
 
 import 'label_generator/label_generator.dart';
 
+export 'label_generator/label_generator.dart';
+export 'label_generator/label_presets.dart';
+
+
+
 class PdfLabelGenerator{
 
   static PdfPageFormat pageFormat = const PdfPageFormat(86 * PdfPageFormat.mm, 39 * PdfPageFormat.mm);

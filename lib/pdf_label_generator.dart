@@ -1,5 +1,7 @@
 library pdf_label_generator;
 
+import 'dart:typed_data';
+
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf_label_generator/label_generator/label_presets.dart';
@@ -15,7 +17,7 @@ class PdfLabelGenerator{
 
   static PdfPageFormat pageFormat = const PdfPageFormat(86 * PdfPageFormat.mm, 39 * PdfPageFormat.mm);
 
-  static Future<void> printLabel({required PdfGeneratorType type}) async {
+  static Future<void> printLabel({required PdfGeneratorType type, Function(Uint8List bytes)? onPrint}) async {
 
     final LabelGenerator labelGenerator = LabelGenerator();
     labelGenerator.setPageFormat(pageFormat);
@@ -28,7 +30,7 @@ class PdfLabelGenerator{
       pdf = type.pdf!;
     }
 
-    labelGenerator.generateLabelPdf(pdf: pdf);
+    labelGenerator.generateLabelPdf(pdf: pdf, onPrint: onPrint);
   }
 }
 

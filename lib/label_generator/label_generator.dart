@@ -14,8 +14,9 @@ class LabelGenerator{
     LabelGenerator.pageFormat = pageFormat;
   }
 
-  Future<void> generateLabelPdf({required pw.Document pdf}) async {
+  Future<void> generateLabelPdf({required pw.Document pdf, required Function(Uint8List bytes)? onPrint}) async {
     final Uint8List pdfBytes = await pdf.save();
+    onPrint?.call(pdfBytes);
     printPdf(pdfBytes);
   }
 }
